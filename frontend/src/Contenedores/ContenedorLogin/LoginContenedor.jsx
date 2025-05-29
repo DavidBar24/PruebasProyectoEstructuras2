@@ -18,14 +18,24 @@ export const LoginContenedor = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { response, data } = await autenticarUsuario(nombre, contrasena);
     
-    if (response.ok) {
+    if (!nombre || !contrasena) {
+      setErrorMessage("Todos los campos son requeridos");
+      setShowError(true);
+      return;
+    }
+
+    const result = await autenticarUsuario(nombre, contrasena);
+    
+    if (result.success) {
+      // Almacenar token y datos de usuario
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("usuario", JSON.stringify(result.usuario));
+      
       setShowSuccess(true);
-      localStorage.setItem("token", data.token);
-      setTimeout(() => navigate("/veterinaria"), 2000);
+      setTimeout(() => navigate("/veterinaria"), 1500);
     } else {
-      setErrorMessage(data.error || "Error desconocido");
+      setErrorMessage(result.error || "Error en la autenticación");
       setShowError(true);
       setTimeout(() => setShowError(false), 3000);
     }
