@@ -14,7 +14,7 @@
   margin: 0 auto;
   background: var(--vet-light);
   min-height: 100vh;
-  margin-top: 1100px;
+  margin-top: 1300px;
 }
 
 .vet-main__header {
@@ -205,8 +205,10 @@
     font-size: 1.75rem;
   }
 }
-
-
-html {
-  scroll-behavior: smooth;
+.vet-logout__wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 20px;
+  background-color: #fefefe;
 }
+
