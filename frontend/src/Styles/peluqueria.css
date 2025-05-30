@@ -1,6 +1,3 @@
-/* ====================== */
-/* VARIABLES ELEGANTES */
-/* ====================== */
 :root {
   --rosa: #FF6B6B;
   --naranja: #FF9A76;
@@ -12,9 +9,6 @@
   --borde: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-/* ====================== */
-/* ESTRUCTURA PRINCIPAL */
-/* ====================== */
 .pagina-peluqueria {
   max-width: 1440px;
   margin: 0 auto;
@@ -27,9 +21,6 @@
   margin-top: 1000px;
 }
 
-/* ====================== */
-/* CABECERA PREMIUM */
-/* ====================== */
 .cabecera-peluqueria {
   background: var(--degradado);
   padding: 6rem 4rem;
@@ -55,9 +46,6 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* ====================== */
-/* SELECTOR DE SERVICIOS */
-/* ====================== */
 .selector-tipo {
   display: flex;
   gap: 2rem;
@@ -80,9 +68,6 @@
   box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
 }
 
-/* ====================== */
-/* GRILLA PROFESIONAL 3 COLUMNAS */
-/* ====================== */
 .filas-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -110,9 +95,6 @@
   box-shadow: 0 25px 50px -12px rgba(255, 107, 107, 0.2);
 }
 
-/* ====================== */
-/* CONTENEDOR IMAGEN */
-/* ====================== */
 .contenedor-imagen {
   height: 380px;
   overflow: hidden;
@@ -131,9 +113,6 @@
   transform: scale(1.08);
 }
 
-/* ====================== */
-/* BADGE DESTACADO */
-/* ====================== */
 .badge {
   position: absolute;
   top: 2rem;
@@ -153,9 +132,6 @@
   50% { transform: translateY(-10px) rotate(3deg); }
 }
 
-/* ====================== */
-/* BOTÓN DE ACCIÓN */
-/* ====================== */
 .btn-agendar {
   background: var(--degradado);
   color: white;
@@ -185,9 +161,6 @@
   animation: brillo 3s infinite;
 }
 
-/* ====================== */
-/* DISEÑO RESPONSIVO */
-/* ====================== */
 @media (max-width: 1200px) {
   .fila-cortes {
     grid-template-columns: repeat(2, 1fr);

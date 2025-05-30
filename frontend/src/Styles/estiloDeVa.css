@@ -100,7 +100,6 @@ select {
   z-index: 1000;
 }
 
-/* Estilos para checkbox-group */
 .checkbox-group {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

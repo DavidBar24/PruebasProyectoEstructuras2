@@ -1,4 +1,3 @@
-// servicios/authServicio.js
 export const registrarUsuario = async (nombre, edad, contrasena) => {
   const response = await fetch("http://localhost:5006/api/registro", {
     method: "POST",

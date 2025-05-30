@@ -8,7 +8,6 @@ const TreatmentManagerContainer = () => {
   const [editedTreatment, setEditedTreatment] = useState(null);
   const [animalTreatments, setAnimalTreatments] = useState([]);
   
-  // Datos de ejemplo 
   const [animals] = useState([
     { id: 'm1', name: 'Firulais', species: 'Perro', breed: 'Labrador' },
     { id: 'm2', name: 'Misifu', species: 'Gato', breed: 'Siamés' },
@@ -16,14 +15,12 @@ const TreatmentManagerContainer = () => {
   ]);
 
   const handleCloneTemplate = (template) => {
-    // Uso del patrón Prototype: clonar el objeto
     const clonedTreatment = template.clone();
     setCurrentTemplate(clonedTreatment);
     setEditedTreatment(null);
   };
 
   const handleApplyTemplate = (template) => {
-    // Uso del patrón Prototype: clonar y preparar para aplicación
     const treatmentToApply = template.clone();
     setEditedTreatment(treatmentToApply);
     setCurrentTemplate(null);

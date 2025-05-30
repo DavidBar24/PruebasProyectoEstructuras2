@@ -1,4 +1,3 @@
-// src/Componentes/BotonLogout.jsx
 import { useNavigate } from "react-router-dom";
 import "../../Styles/LogOut.css"
 
@@ -8,7 +7,7 @@ const BotonLogout = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/"); // Redirige a la raíz
+    navigate("/");
   };
 
   return (

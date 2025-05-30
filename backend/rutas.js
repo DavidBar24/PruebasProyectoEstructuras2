@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const db = require('./bd'); // Importamos la conexión a la base de datos
+const db = require('./bd');
 
 
 
@@ -26,12 +26,12 @@ router.post('/registro', async (req, res) => {
           return res.status(500).json({ error: 'Error al registrar usuario' });
         }
         
-        const idUsuario = resultado.insertId; // Obtiene el ID generado
+        const idUsuario = resultado.insertId;
         const token = jwt.sign({ id: idUsuario, nombre }, SECRETO_JWT, { expiresIn: '4h' });
         
         res.json({ 
           token,
-          idUsuario //  se envia el id en la respuesta del json 
+          idUsuario
         });
       }
     );
@@ -84,7 +84,7 @@ router.post('/inicio-sesion', async (req, res) => {
 
 // Registrar mascota
 router.post('/registrar-mascota', async (req, res) => {
-  const token = req.headers.authorization?.split(' ')[1]; // Obtener token
+  const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: "Token no proporcionado" });
 
   try {
@@ -106,7 +106,7 @@ router.post('/registrar-mascota', async (req, res) => {
   }
 });
 
-// Esto debe fucnionar para que las mascotas que tenga el usuario se muestre en DesparaYVacuna.js
+// obtener las mascotas del usuario
 router.get('/mis-mascotas', (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'Acceso no autorizado' });
@@ -155,7 +155,7 @@ router.get('/mis-mascotas', (req, res) => {
   }
 });
   
-  // Agendar cita para Vacunación o Desparasitación (se requiere id_mascota)
+  // Agendar cita para Vacunación o Desparasitación
   router.post('/agendar-cita', async (req, res) => {
     const token = req.headers.authorization?.split(' ')[1];
     const { tipo, fecha, id_mascota, ...datosExtra } = req.body;
@@ -173,10 +173,8 @@ router.get('/mis-mascotas', (req, res) => {
         try {
           await conexion.beginTransaction();
   
-          // Corregir: Usar CURRENT_DATE() si no hay fechaUltimaVacuna
           const fechaUltima = fechaUltimaVacuna || new Date().toISOString().split('T')[0];
   
-          // Actualizar vacunación
           await conexion.execute(
             `INSERT INTO vacunacion (id_mascota, fecha_ultima_vacunacion, fecha_proxima_vacunacion)
              VALUES (?, ?, ?)
@@ -186,7 +184,6 @@ router.get('/mis-mascotas', (req, res) => {
             [id_mascota, fechaUltima, fecha]
           );
   
-          // Corregir: Generar placeholders dinámicos para IN (...)
           if (vacunasExistentes?.length > 0) {
             const placeholders = vacunasExistentes.map(() => '?').join(',');
             const [tratamientos] = await conexion.execute(
@@ -211,7 +208,6 @@ router.get('/mis-mascotas', (req, res) => {
           res.status(500).json({ error: 'Error al procesar vacunación' });
         }
       } else if (tipo === "DESPARASITACION") {
-        // Código de desparasitación se mantiene igual
         const { fechaDesparasitacionAnterior } = datosExtra;
         db.query(
           `INSERT INTO desparasitacion (id_mascota, fecha_proxima_desparasitacion, fecha_ultima_desparasitacion)
@@ -289,9 +285,8 @@ router.post('/agendar-cita-calendario', (req, res) => {
     });
 });
 
-// 1. Ruta para obtener el perfil del usuario (validando token)
+// perfil del usuario
 router.get('/perfil', async (req, res) => {
-  // 1. Verificar el token
   const authHeader = req.headers.authorization;
   
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -304,18 +299,15 @@ router.get('/perfil', async (req, res) => {
   const token = authHeader.split(' ')[1];
 
   try {
-    // 2. Verificar y decodificar el token
     const decoded = jwt.verify(token, 'TU_SECRETO_JWT');
     
-    // 3. Validar que el token tenga el campo necesario
-    if (!decoded.id_usuario) { // Cambié a id_usuario que es más estándar
+    if (!decoded.id_usuario) {
       return res.status(401).json({
         success: false,
         error: "Token no contiene la identificación del usuario"
       });
     }
 
-    // 4. Consultar la base de datos
     const [rows] = await pool.query(
       'SELECT id, nombre, email FROM usuarios WHERE id = ?', 
       [decoded.id_usuario]
@@ -328,7 +320,6 @@ router.get('/perfil', async (req, res) => {
       });
     }
 
-    // 5. Responder con los datos del usuario
     res.json({
       success: true,
       data: rows[0]
@@ -337,7 +328,6 @@ router.get('/perfil', async (req, res) => {
   } catch (error) {
     console.error('Error en /perfil:', error);
     
-    // Manejo específico de errores de JWT
     if (error.name === 'JsonWebTokenError') {
       return res.status(401).json({
         success: false,
@@ -345,7 +335,6 @@ router.get('/perfil', async (req, res) => {
       });
     }
 
-    // Otros errores
     res.status(500).json({
       success: false,
       error: "Error interno del servidor"
@@ -353,8 +342,7 @@ router.get('/perfil', async (req, res) => {
   }
 });
 
-// 2. Ruta para obtener mascotas del usuario
-// ✅ Correcto: El backend usa id_cliente (igual que la BD)
+// mascotas del usuario
 router.get('/mascotas', async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: "Token no proporcionado" });
@@ -379,7 +367,7 @@ router.get('/mascotas', async (req, res) => {
   }
 });
 
-// Obtener mascotas por ID de usuario
+// mascotas por ID de usuario
 router.get('/mascotas/:idUsuario', (req, res) => {
   const { idUsuario } = req.params;
 
@@ -413,5 +401,4 @@ router.get('/mascotas/:idUsuario', (req, res) => {
   });
 });
 
-// Exportar las rutas
 module.exports = router;

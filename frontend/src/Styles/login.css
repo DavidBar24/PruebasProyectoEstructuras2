@@ -1,7 +1,7 @@
 :root {
-  --auth-primary: #7C3AED;      /* Púrpura vibrante */
-  --auth-secondary: #EC4899;    /* Rosa neón */
-  --auth-accent: #FCD34D;       /* Amarillo dorado */
+  --auth-primary: #7C3AED;
+  --auth-secondary: #EC4899;    
+  --auth-accent: #FCD34D;
   --auth-bg: rgba(255, 255, 255, 0.96);
   --auth-text: #1F2937;
   --auth-magic-gradient: linear-gradient(
@@ -13,7 +13,6 @@
   --auth-glow: 0 0 25px;
 }
 
-/* Contenedor Mágico */
 .auth-login {
   background: var(--auth-bg);
   backdrop-filter: blur(20px) saturate(200%);
@@ -40,7 +39,6 @@
     0 12px 32px rgba(0, 0, 0, 0.1); }
 }
 
-/* Título Brillante */
 .auth-login__title {
   background: var(--auth-magic-gradient);
   -webkit-background-clip: text;
@@ -49,7 +47,6 @@
   text-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
 }
 
-/* Inputs Mágicos */
 .auth-login__input {
   border: 2px solid transparent;
   background: 
@@ -65,7 +62,6 @@
     0 0 15px rgba(236, 72, 153, 0.2);
 }
 
-/* Botón de Arcoíris */
 .auth-login__submit {
   background: var(--auth-magic-gradient);
   background-size: 200% auto;
@@ -101,7 +97,6 @@
   to { filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.4)); }
 }
 
-/* Enlace Brillante */
 .auth-login__link {
   background: var(--auth-magic-gradient);
   -webkit-background-clip: text;
@@ -117,7 +112,6 @@
   bottom: -3px;
 }
 
-/* Efecto de Partículas */
 .auth-login::after {
   content: '';
   position: absolute;
@@ -142,7 +136,6 @@
   to { transform: rotate(360deg); }
 }
 
-/* Checkbox Mágico */
 .auth-login__checkbox {
   border: 2px solid var(--auth-primary);
 }
@@ -152,7 +145,6 @@
   border-color: transparent;
 }
 
-/* Responsive Mágico */
 @media (max-width: 480px) {
   .auth-login {
     backdrop-filter: blur(12px);

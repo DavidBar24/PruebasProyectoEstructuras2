@@ -118,7 +118,6 @@
     to { transform: rotate(360deg); }
   }
   
-  /* Versión móvil */
   @media (max-width: 480px) {
     .login-message {
       width: 90%;

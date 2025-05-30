@@ -1,8 +1,6 @@
-// DecoratorPeluqueria.js
 import React, { useState } from 'react';
 import { Calendar } from 'lucide-react';
 
-// --- Patrón Decorator --- //
 class Servicio {
   getDescription() {
     return '';
@@ -57,13 +55,11 @@ class CorteUñasDecorator extends ServicioDecorator {
   }
 }
 
-// --- Componente React --- //
 const DecoratorPeluqueria = ({ corte, onConfirm }) => {
   const [showExtras, setShowExtras] = useState(false);
   const [bath, setBath] = useState(false);
   const [nails, setNails] = useState(false);
 
-  // Construye el objeto servicio con decoradores según selección
   const buildService = () => {
     let servicio = new ServicioBasePeluqueria(corte.nombre, corte.precio);
     if (bath) servicio = new BañoEspecialDecorator(servicio);

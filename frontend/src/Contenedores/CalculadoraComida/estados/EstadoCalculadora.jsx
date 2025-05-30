@@ -3,6 +3,3 @@ export default class EstadoCalculadora {
     throw new Error("Método calcularCalorias debe ser implementado");
   }
 }
-
-
-//Se esta utilizando el patron State 

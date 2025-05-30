@@ -9,14 +9,14 @@ app.use(cors({
     origin: "http://localhost:3000",
     methods: "POST, GET",
     allowedHeaders: ["Content-Type"],
-    credentials: true, // Permite enviar cookies/headers
-    exposedHeaders: ['Authorization'] // Permite leer el header personalizado
+    credentials: true,
+    exposedHeaders: ['Authorization']
 }));
 
 app.use(express.json());
 
-const rutas = require('./rutas'); // Importamos las rutas
-app.use('/api', rutas); // Prefijo para las rutas
+const rutas = require('./rutas');
+app.use('/api', rutas);
 
 
 const PORT = 5006;

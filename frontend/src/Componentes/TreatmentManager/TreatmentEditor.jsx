@@ -6,18 +6,16 @@ const TreatmentEditor = ({ treatment, animals, onSave }) => {
   const [steps, setSteps] = useState([]);
   const [newStep, setNewStep] = useState({ action: '', duration: '' });
   
-  // Actualizar cuando cambia el tratamiento
   useEffect(() => {
     if (treatment) {
       setSteps([...treatment.steps]);
     }
   }, [treatment]);
 
-  // Agregar paso manteniendo ID único
   const addStep = () => {
     if (newStep.action.trim()) {
       const stepToAdd = {
-        id: Date.now(), // ID único
+        id: Date.now(),
         step: steps.length + 1,
         action: newStep.action.trim(),
         duration: newStep.duration || "Personalizado"
@@ -28,14 +26,12 @@ const TreatmentEditor = ({ treatment, animals, onSave }) => {
     }
   };
 
-  // Actualizar paso existente
   const updateStep = (id, field, value) => {
     setSteps(steps.map(step => 
       step.id === id ? { ...step, [field]: value } : step
     ));
   };
 
-  // Eliminar paso
   const removeStep = (id) => {
     setSteps(steps.filter(step => step.id !== id));
   };

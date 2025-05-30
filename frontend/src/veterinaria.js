@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, PawPrint, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import BotonLogout from "./Componentes/LogOut/LogOut.jsx"; // Importa el componente logout
+import BotonLogout from "./Componentes/LogOut/LogOut.jsx";
 
 import "./veterinaria.css";
 

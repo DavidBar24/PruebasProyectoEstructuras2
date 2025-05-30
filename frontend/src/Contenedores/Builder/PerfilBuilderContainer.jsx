@@ -5,10 +5,8 @@ import PerfilModel from '../../models/PerfilModel';
 import ServicioModel from '../../models/ServicioModel';
 
 const PerfilBuilderContainer = () => {
-  // Estado para el perfil en construcción
   const [perfil, setPerfil] = useState(new PerfilModel());
   
-  // Servicios y beneficios disponibles 
   const [serviciosDisponibles] = useState([
     new ServicioModel('preventivo', 'Chequeo Anual', 50),
     new ServicioModel('premium', 'Plan Integral', 120),
@@ -21,7 +19,6 @@ const PerfilBuilderContainer = () => {
     { nombre: 'Asistencia Telefónica', descripcion: '24/7' }
   ]);
 
-  // Handlers para el patrón Builder
   const agregarServicio = (servicio) => {
     const nuevoPerfil = new PerfilModel();
     Object.assign(nuevoPerfil, perfil);

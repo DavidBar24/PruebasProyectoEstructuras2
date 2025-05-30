@@ -31,7 +31,6 @@ export const useCalculadoraComida = () => {
     if (!validarInputs()) return;
     
     try {
-      // Usando el patrón State
       const estado = EstadoFactory.crearEstado(species);
       const pesoKg = unit === 'kg' ? parseFloat(weight) : parseFloat(weight) * 0.453592;
       const calorias = estado.calcularCalorias(pesoKg, activityLevel);

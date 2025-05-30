@@ -15,22 +15,3 @@ const TarjetaCorte = ({ corte }) => (
 );
 
 export default TarjetaCorte;
-
-/*
-lista-cortes
-filas-container
-cabeceracabecera
-fila-cortes
-badge
-btn-agendar
-pagina-peluqueria
-selector-tipo"
-
-btn-tipo
-
-seccion-principal
-
-
-
-
-*/

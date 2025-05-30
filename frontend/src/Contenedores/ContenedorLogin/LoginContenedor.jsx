@@ -28,7 +28,6 @@ export const LoginContenedor = () => {
     const result = await autenticarUsuario(nombre, contrasena);
     
     if (result.success) {
-      // Almacenar token y datos de usuario
       localStorage.setItem("token", result.token);
       localStorage.setItem("usuario", JSON.stringify(result.usuario));
       
